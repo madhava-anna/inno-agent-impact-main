@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -10,18 +10,29 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 
-const contactSchema = z.object({
-  name: z.string().trim().min(1, { message: "Name is required" }).max(100, { message: "Name must be less than 100 characters" }),
-  email: z.string().trim().email({ message: "Invalid email address" }).max(255, { message: "Email must be less than 255 characters" }),
-  company: z.string().trim().max(100, { message: "Company name must be less than 100 characters" }).optional(),
-  message: z.string().trim().min(1, { message: "Message is required" }).max(1000, { message: "Message must be less than 1000 characters" })
-});
-
-type ContactForm = z.infer<typeof contactSchema>;
-
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  // Generate a simple math problem for human verification
+  const mathProblem = useMemo(() => {
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    return { num1, num2, answer: num1 + num2 };
+  }, []);
+
+  const contactSchema = z.object({
+    name: z.string().trim().min(1, { message: "Name is required" }).max(100, { message: "Name must be less than 100 characters" }),
+    email: z.string().trim().email({ message: "Invalid email address" }).max(255, { message: "Email must be less than 255 characters" }),
+    company: z.string().trim().max(100, { message: "Company name must be less than 100 characters" }).optional(),
+    message: z.string().trim().min(1, { message: "Message is required" }).max(1000, { message: "Message must be less than 1000 characters" }),
+    verification: z.string().trim().refine(
+      (val) => parseInt(val) === mathProblem.answer,
+      { message: "Incorrect answer. Please solve the math problem." }
+    )
+  });
+
+  type ContactForm = z.infer<typeof contactSchema>;
 
   const form = useForm<ContactForm>({
     resolver: zodResolver(contactSchema),
@@ -29,7 +40,8 @@ const Contact = () => {
       name: "",
       email: "",
       company: "",
-      message: ""
+      message: "",
+      verification: ""
     }
   });
 
@@ -52,19 +64,14 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "hello@innosys.ai",
-      href: "mailto:hello@innosys.ai"
+      value: "contact@innosys.ai",
+      href: "mailto:contact@innosys.ai"
     },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567"
-    },
+    
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
+      value: "London, UK",
       href: "#"
     }
   ];
@@ -203,6 +210,31 @@ const Contact = () => {
                           <Textarea
                             placeholder="Tell us about your challenges and how we can help..."
                             className="min-h-[120px] resize-none"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* Human Verification */}
+                  <FormField
+                    control={form.control}
+                    name="verification"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Human Verification *</FormLabel>
+                        <div className="flex items-center space-x-4 mb-2">
+                          <span className="text-sm text-muted-foreground">
+                            What is {mathProblem.num1} + {mathProblem.num2}?
+                          </span>
+                        </div>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter your answer"
+                            type="number"
+                            className="w-32"
                             {...field}
                           />
                         </FormControl>

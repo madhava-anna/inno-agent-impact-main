@@ -47,15 +47,12 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-2 text-sm text-primary-foreground/80">
                 <Mail className="w-4 h-4" />
-                <span>hello@innosys.ai</span>
+                <span>contact@innosys.ai</span>
               </div>
-              <div className="flex items-center space-x-2 text-sm text-primary-foreground/80">
-                <Phone className="w-4 h-4" />
-                <span>+1 (555) 123-4567</span>
-              </div>
+             
               <div className="flex items-center space-x-2 text-sm text-primary-foreground/80">
                 <MapPin className="w-4 h-4" />
-                <span>San Francisco, CA</span>
+                <span>London, UK</span>
               </div>
             </div>
           </div>
@@ -64,7 +61,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-primary-foreground/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-primary-foreground/60">
-            © 2024 InnoSys. All rights reserved.
+            © 2025 InnoSys. All rights reserved.
           </p>
           <div className="flex items-center space-x-4">
             <Button variant="ghost" size="sm" className="text-primary-foreground/80 hover:text-primary-foreground">
