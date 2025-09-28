@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Resend } from "resend";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -45,12 +46,21 @@ const Contact = () => {
     }
   });
 
+  const resend = new Resend(process.env.REACT_APP_RESEND_API_KEY);
+
   const onSubmit = async (data: ContactForm) => {
     setIsSubmitting(true);
     
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    //await new Promise(resolve => setTimeout(resolve, 1000));
     
+    const { error } = await resend.emails.send({
+      from: data.email,
+      to: process.env.REACT_APP_TO_ADDRESS,
+      subject: data.name + " from "+data.company,
+      html: data.message,
+      replyTo: data.email,
+    });
     toast({
       title: "Message sent successfully!",
       description: "We'll get back to you within 24 hours.",
