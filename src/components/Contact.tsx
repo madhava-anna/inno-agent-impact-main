@@ -54,17 +54,24 @@ const Contact = () => {
     // Simulate form submission
     //await new Promise(resolve => setTimeout(resolve, 1000));
     
-    const { error } = await resend.emails.send({
-      from: data.email,
-      to: process.env.REACT_APP_TO_ADDRESS,
-      subject: data.name + " from "+data.company,
-      html: data.message,
-      replyTo: data.email,
-    });
-    toast({
-      title: "Message sent successfully!",
-      description: "We'll get back to you within 24 hours.",
-    });
+    fetch("https://emailapi.innosys.ai", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(data)
+    }).then(response => response.json())
+    .then(responseJson => {
+      toast({
+        title: "Message sent successfully!",
+        description: "We'll get back to you within 24 hours.",
+      });
+  })
+    .catch(error => {
+      toast({
+        title: "Unable to send message",
+        description: "Apologies for inconvenience, Please send the email manually.",
+      });
+    })
+    
     
     form.reset();
     setIsSubmitting(false);
