@@ -10,12 +10,16 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <a 
+            href="#home" 
+            className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer"
+            onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}
+          >
             <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">I</span>
             </div>
             <span className="text-xl font-bold text-foreground">InnoSys</span>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

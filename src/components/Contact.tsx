@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
-import { Resend } from "resend";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,14 +45,11 @@ const Contact = () => {
     }
   });
 
-  const resend = new Resend(process.env.REACT_APP_RESEND_API_KEY);
-
   const onSubmit = async (data: ContactForm) => {
     setIsSubmitting(true);
     
     // Simulate form submission
     //await new Promise(resolve => setTimeout(resolve, 1000));
-    
     fetch("https://emailapi.innosys.ai", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -64,13 +60,14 @@ const Contact = () => {
         title: "Message sent successfully!",
         description: "We'll get back to you within 24 hours.",
       });
-  })
+    })
     .catch(error => {
       toast({
         title: "Unable to send message",
         description: "Apologies for inconvenience, Please send the email manually.",
       });
     })
+
     
     
     form.reset();
@@ -97,23 +94,23 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-gradient-to-br from-background to-secondary/30">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             <span className="text-foreground">Get in</span>{" "}
             <span className="bg-gradient-primary bg-clip-text text-transparent">Touch</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
             Ready to transform your workflows with AI? Let's discuss how InnoSys 
             can help you achieve unprecedented efficiency and impact.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-semibold mb-6">Let's Start a Conversation</h3>
-              <p className="text-muted-foreground mb-8">
+              <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Let's Start a Conversation</h3>
+              <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
                 Whether you're looking for complete automation or hybrid human-AI solutions, 
                 we're here to help you find the perfect fit for your organization.
               </p>
@@ -123,14 +120,14 @@ const Contact = () => {
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
                 <div key={index} className="flex items-center space-x-4 group">
-                  <div className="w-12 h-12 bg-gradient-accent rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <info.icon className="w-6 h-6 text-accent-foreground" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-accent rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <info.icon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-foreground" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">{info.label}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{info.label}</p>
                     <a 
                       href={info.href} 
-                      className="text-foreground hover:text-primary transition-colors font-medium"
+                      className="text-sm sm:text-base text-foreground hover:text-primary transition-colors font-medium"
                     >
                       {info.value}
                     </a>
@@ -174,7 +171,7 @@ const Contact = () => {
             <CardContent>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormField
                       control={form.control}
                       name="name"

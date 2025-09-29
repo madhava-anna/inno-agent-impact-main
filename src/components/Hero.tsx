@@ -8,39 +8,39 @@ const Hero = () => {
       <div className="container mx-auto px-4 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8">
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 <span className="text-foreground">Transform Your</span>
                 <br />
                 <span className="bg-gradient-hero bg-clip-text text-transparent">
                   Workflows with AI
                 </span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-lg">
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-lg">
                 InnoSys delivers multi-agent AI workflows that boost productivity, 
                 efficiency, and quality while creating meaningful societal impact.
               </p>
             </div>
 
             {/* Key Benefits */}
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
               <div className="flex items-center space-x-2">
-                <Zap className="w-5 h-5 text-accent" />
-                <span className="text-sm font-medium">Automated Workflows</span>
+                <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-accent" />
+                <span className="text-xs sm:text-sm font-medium">Automated Workflows</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Users className="w-5 h-5 text-accent" />
-                <span className="text-sm font-medium">Human-in-Loop</span>
+                <Users className="w-4 h-4 sm:w-5 sm:h-5 text-accent" />
+                <span className="text-xs sm:text-sm font-medium">Human-in-Loop</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Bot className="w-5 h-5 text-accent" />
-                <span className="text-sm font-medium">Multi-Agent AI</span>
+                <Bot className="w-4 h-4 sm:w-5 sm:h-5 text-accent" />
+                <span className="text-xs sm:text-sm font-medium">Multi-Agent AI</span>
               </div>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Button 
                 variant="hero" 
                 size="lg" 

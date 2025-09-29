@@ -40,19 +40,19 @@ const Services = () => {
     <section id="services" className="py-20 bg-secondary/30">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             <span className="text-foreground">Our</span>{" "}
             <span className="bg-gradient-primary bg-clip-text text-transparent">Solutions</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
             Choose from fully automated workflows or hybrid systems that combine 
             AI efficiency with human expertise for maximum impact.
           </p>
         </div>
 
         {/* Main Services */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-12 sm:mb-16">
           {services.map((service, index) => (
             <Card key={index} className="relative overflow-hidden group hover:shadow-elegant transition-all duration-300">
               <CardHeader>
@@ -91,14 +91,14 @@ const Services = () => {
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           {benefits.map((benefit, index) => (
             <div key={index} className="text-center group">
-              <div className="w-16 h-16 bg-gradient-accent rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <benefit.icon className="w-8 h-8 text-accent-foreground" />
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-accent rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <benefit.icon className="w-6 h-6 sm:w-8 sm:h-8 text-accent-foreground" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-              <p className="text-muted-foreground">{benefit.description}</p>
+              <h3 className="text-lg sm:text-xl font-semibold mb-2">{benefit.title}</h3>
+              <p className="text-sm sm:text-base text-muted-foreground">{benefit.description}</p>
             </div>
           ))}
         </div>

@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground py-12">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-8">
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
@@ -49,7 +49,7 @@ const Footer = () => {
                 <Mail className="w-4 h-4" />
                 <span>contact@innosys.ai</span>
               </div>
-             
+
               <div className="flex items-center space-x-2 text-sm text-primary-foreground/80">
                 <MapPin className="w-4 h-4" />
                 <span>London, UK</span>
@@ -59,18 +59,18 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-primary-foreground/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-primary-foreground/60">
+        <div className="border-t border-primary-foreground/20 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-xs sm:text-sm text-primary-foreground/60 text-center sm:text-left">
             © 2025 InnoSys. All rights reserved.
           </p>
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="text-primary-foreground/80 hover:text-primary-foreground">
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            <Button variant="ghost" size="sm" className="text-xs sm:text-sm text-primary-foreground/80 hover:text-primary-foreground">
               Terms
             </Button>
-            <Button variant="ghost" size="sm" className="text-primary-foreground/80 hover:text-primary-foreground">
+            <Button variant="ghost" size="sm" className="text-xs sm:text-sm text-primary-foreground/80 hover:text-primary-foreground">
               Privacy
             </Button>
-            <Button variant="ghost" size="sm" className="text-primary-foreground/80 hover:text-primary-foreground">
+            <Button variant="ghost" size="sm" className="text-xs sm:text-sm text-primary-foreground/80 hover:text-primary-foreground">
               Cookies
             </Button>
           </div>
